@@ -1,0 +1,17 @@
+[package]
+name = "the_wabt_rs"
+version = "0.1.0"
+authors = ["Yury Delendik <ydelendik@mozilla.com>"]
+edition = "2018"
+publish = false
+
+[lib]
+name = "_wabt_rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+wabt = "0.9.1"
+
+[dependencies.pyo3]
+version = "0.7.0-alpha.1"
+features = ["extension-module"]
