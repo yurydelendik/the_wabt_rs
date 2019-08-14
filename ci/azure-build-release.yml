@@ -31,6 +31,8 @@ steps:
 #   displayName: Install sccache (Windows)
 #   condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
 
+- bash: mkdir wheelhouse
+
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.6' 
@@ -38,10 +40,20 @@ steps:
 
 - bash: |
     pip3 install -U setuptools wheel==0.31.1 setuptools-rust
-    mkdir wheelhouse
     python setup.py bdist_wheel
     mv dist/*.whl wheelhouse/
-  displayName: Build wheels
+  displayName: Build wheels py36
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.7' 
+    addToPath: true
+
+- bash: |
+    pip3 install -U setuptools wheel==0.31.1 setuptools-rust
+    python setup.py bdist_wheel
+    mv dist/*.whl wheelhouse/
+  displayName: Build wheels py37
 
 - task: PublishBuildArtifacts@1
   inputs:

@@ -42,7 +42,7 @@ jobs:
       set -e
       sudo yum install -y centos-release-scl cmake xz epel-release
       sudo yum install -y rh-python36 patchelf unzip scl-utils
-      curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+      sudo yum install -y gcc openssl-devel bzip2-devel libffi-devel
       sudo yum install -y devtoolset-8-gcc devtoolset-8-binutils devtoolset-8-gcc-c++
       echo "##vso[task.prependpath]/opt/rh/devtoolset-8/root/usr/bin"
     displayName: Install system dependencies
